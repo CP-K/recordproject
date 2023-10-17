@@ -1,0 +1,28 @@
+    <!-- タイトルとナビゲーションボタン -->
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <!-- タイトルと本文 -->
+                <h1 class="fw-light">Cat Record</h1>
+                <p class="lead text-muted">
+                    猫の体調の変化にいち早く気づいてあげよう
+                </p>
+                <p>
+                    <!-- ナビゲーションボタン -->
+                    {% if user.is_authenticated %}
+                    <!-- ログイン中のボタン -->
+                    <a href="{% url 'record:post' %}"
+                        class="btn btn-primary my-2">記録する</a>
+                    <a href="{% url 'accounts:logout' %}"
+                        class="btn btn-secondary my-2">ログアウト</a>
+                    {% else %}
+                    <!-- ログイン状態ではない場合のボタン -->
+                    <a href="{% url 'accounts:signup' %}"
+                        class="btn btn-primary my-2">今すぐサインアップ</a>
+                    <a href="{% url 'accounts:login' %}"
+                        class="btn btn-secondary my-2">登録済みならログイン</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </section>

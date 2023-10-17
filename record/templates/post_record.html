@@ -1,0 +1,147 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}Post{% endblock %}
+
+    {% block contents %}
+    <br>
+    <div class="container">
+        <!-- 行を配置 -->
+        <div class="row">
+            <!-- 列の左右に余白offset-2を入れる -->
+            <div class="col offset-2">
+                <!-- ファイルをアップデートする場合は
+                    enctype="multipart/form-data"が必要-->
+                <form method="POST"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>猫の名前</th>
+                            <td>{{ form.catname }}</td>
+                        </tr>
+                        <tr>
+                            <th>記録日</th>
+                            <td>{{ form.date }}</td>
+                        </tr>
+                        <tr>
+                            <th>朝ごはん</th>
+                            <td>{{ form.food_category_bf }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.food_amount_bf }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.food_unit_bf }}</td>
+                        </tr>
+                        <tr>
+                            <th>昼ごはん</th>
+                            <td>{{ form.food_category_l }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.food_amount_l }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.food_unit_l }}</td>
+                        </tr>
+                        <tr>
+                            <th>夜ごはん</th>
+                            <td>{{ form.food_category_d }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.food_amount_d }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.food_unit_d }}</td>
+                        </tr>
+                        <tr>
+                            <th>おやつその1</th>
+                            <td>{{ form.snack_category_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.snack_amount_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.snack_unit_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>おやつその2</th>
+                            <td>{{ form.snack_category_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.snack_amount_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.snack_unit_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>おやつその3</th>
+                            <td>{{ form.snack_category_3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>量</th>
+                            <td>{{ form.snack_amount_3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>単位</th>
+                            <td>{{ form.snack_unit_3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>尿の量</th>
+                            <td>{{ form.urine_amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>便の量</th>
+                            <td>{{ form.stool_amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>便の状態</th>
+                            <td>{{ form.stool_condition }}</td>
+                        </tr>
+                        <tr>
+                            <th>活発度数</th>
+                            <td>{{ form.physical_condition }}</td>
+                        </tr>
+                        <tr>
+                            <th>傷の状態</th>
+                            <td>{{ form.damage }}</td>
+                        </tr>
+                        <tr>
+                            <th>通院</th>
+                            <td>{{ form.clinic }}</td>
+                        </tr>
+                        <tr>
+                            <th>爪切り</th>
+                            <td>{{ form.cut_nail }}</td>
+                        </tr>
+                        <tr>
+                            <th>体重</th>
+                            <td>{{ form.weight }}</td>
+                        </tr>
+                        <tr>
+                            <th>今日のひとこと</th>
+                            <td>{{ form.comment }}</td>
+                        </tr>
+                        <tr>
+                            <th>今日の一枚</th>
+                            <td>{{ form.image }}</td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <button type="submit">記録を登録する</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+

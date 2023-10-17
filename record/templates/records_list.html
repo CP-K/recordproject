@@ -1,0 +1,52 @@
+<div class="container">
+<!-- 行要素を配置 -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <!-- レコードが格納されたobject_listから
+            レコードを1行ずつrecordに取り出す -->
+        {% for record in object_list %}
+        <!-- 列要素を配置 -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <!-- svgタグをimgに変更
+                    src属性を追加してイメージのURLを設定する -->
+                <img src="{{ record.image.url }}"
+                    class="bg-placeholder-img card-img-top"
+                    width="100%" height="225"
+                    xmlns="http://www.w3.org/2000/svg"
+                    roll="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice"
+                    focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                </img>
+                <!-- タイトルとボタンを出力するブロック -->
+                <div class="card-body">
+                    <p class="card-text">
+                        <!-- titleフィールドを出力 -->
+                        {{ record.date }}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <!-- 詳細ページを表示するボタン -->
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-secondary"
+                                    >
+                                    詳細を見る</button>
+                            <!-- 猫の名前を表示するボタン -->
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-secondary"
+                                    onclick="location.href='{% url 'record:records_catname' catname=record.catname.id %}'">
+                                    {{ record.catname.title }}</button>
+                        </div>
+                        <!-- 投稿したユーザー名を出力 -->
+                        <small class="text-muted">{{ record.user.username }}</small>
+                    </div>
+                </div>
+            </div>
+        <!-- 列要素ここまで -->
+        </div>
+        <!-- forブロック終了 -->
+        {% endfor %}
+    <!-- 行要素ここまで -->
+    </div>
+</div>
