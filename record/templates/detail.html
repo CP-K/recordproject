@@ -1,0 +1,25 @@
+<!-- ベーステンプレートを適用する -->
+{% extends "base.html" %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}Record Detail{% endblock %}
+
+    {% block content %}
+    <br>
+    <div class="container">
+        <!-- 行を配置 -->
+        <div class="row">
+            <!-- 列の左右に余白offset-3を入れる -->
+            <div class="col offset-3">
+                <!-- タイトル -->
+                <h2>{{object.title}}</h2>
+                <!-- コメント -->
+                <p>{{object.comment}}</p>
+                <br>
+                <!-- 記録日 -->
+                <p>{{object.date}}の記録</p>
+                <!-- 写真 -->
+                <p><img src="{{object.image.url}}"></img></p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

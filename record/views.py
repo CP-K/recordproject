@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 #django.views.genericからTemplateviewをインポート
 from django.views.generic import TemplateView, ListView
@@ -13,6 +15,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 #modelsモジュールからモデルConditionRecordをインポート
 from .models import ConditionRecord
+#django.views.genericからDetailViewをインポート
+from django.views.generic import DetailView
 
 class IndexView(ListView):
     '''トップページのビュー
@@ -105,3 +109,42 @@ class CatnameView(ListView):
         catnames=ConditionRecord.objects.filter(catname=catname_id).order_by('-posted_at')
         #クエリによって取得されたレコードを返す
         return catnames
+
+class UserView(ListView):
+    '''ユーザーの投稿一覧ページのビュー
+    Attributes:
+    template_name: レンダリングするテンプレート
+    paginate_by: 1ページに表示するレコードの件数
+    '''
+    #index.htmlをレンダリングする
+    template_name='index.html'
+    #1ページに表示するレコードの件数
+    paginate_by=9
+
+    def get_queryset(self):
+        '''クエリを実行する
+        self.kwargsの取得が必要なため、クラス変数querysetではなく、
+        get_queryset()のオーバーライドによりクエリを実行する
+
+        Returns:クエリによって取得されたレコード
+        '''
+        #self.kwargsでキーワードの辞書を取得し、
+        #userキーの値(ユーザーテーブルのid)を取得
+        user_id=self.kwargs['user']
+        #filter(フィールド名=id)で絞り込む
+        user_list=ConditionRecord.objects.filter(user=user_id).order_by('-posted_at')
+        #クエリによって取得されたレコードを返す
+        return user_list
+
+class DetailView(DetailView):
+    '''詳細ページのビュー
+    
+    投稿記事の詳細を表示するためDetailViewを継承する
+    Attributes:
+        template_name: レンダリングするテンプレート
+        model: モデルのクラス
+    '''
+    #post.htmlをレンダリングする
+    template_name='detail.html'
+    #クラス変数modelにモデルConditionRecordを設定
+    model=ConditionRecord

@@ -30,7 +30,7 @@
                             <!-- 詳細ページを表示するボタン -->
                             <button type="button"
                                     class="btn btn-sm btn-outline-secondary"
-                                    >
+                                    onclick="location.href='{% url 'record:record_detail' record.pk %}'">
                                     詳細を見る</button>
                             <!-- 猫の名前を表示するボタン -->
                             <button type="button"
@@ -39,7 +39,9 @@
                                     {{ record.catname.title }}</button>
                         </div>
                         <!-- 投稿したユーザー名を出力 -->
-                        <small class="text-muted">{{ record.user.username }}</small>
+                        <a href="{% url 'record:user_list' user=record.user.id %}">
+                            <small class="text-muted">{{ record.user.username }}</small>
+                        </a>
                     </div>
                 </div>
             </div>

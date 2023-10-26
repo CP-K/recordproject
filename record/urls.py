@@ -21,4 +21,20 @@ urlpatterns = [
     path('records/<int:catname>',
         views.CatnameView.as_view(),
         name='records_catname'),
+
+    #ユーザーの投稿一覧ページ
+    #records/<ユーザーテーブルのid値>にマッチング
+    #<int:user>は辞書{user: id値(int)}としてCatnameViewに渡される
+    path('user_list/<int:user>',
+        views.UserView.as_view(),
+        name='user_list'
+        ),
+
+    #詳細ページ
+    #record-detail/<Condition Recordsテーブルのid値>にマッチング
+    #<int:pk>は辞書{pk: id値(int)}としてDetailViewに渡される
+    path('record_detail/<int:pk>',
+        views.DetailView.as_view(),
+        name='record_detail'
+        ),
 ]
