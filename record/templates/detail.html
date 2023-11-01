@@ -3,22 +3,63 @@
 <!-- ヘッダー情報のページタイトルを設定する -->
 {% block title %}Record Detail{% endblock %}
 
-    {% block content %}
+    {% block contents %}
     <br>
     <div class="container">
         <!-- 行を配置 -->
         <div class="row">
             <!-- 列の左右に余白offset-3を入れる -->
             <div class="col offset-3">
-                <!-- タイトル -->
-                <h2>{{object.title}}</h2>
-                <!-- コメント -->
-                <p>{{object.comment}}</p>
-                <br>
+
+                <!-- 猫の名前 -->
+                <p><strong>{{object.catname}}</strong></p>
+
                 <!-- 記録日 -->
-                <p>{{object.date}}の記録</p>
+                <p><strong>{{object.date}}</strong>の記録</p>
+
                 <!-- 写真 -->
-                <p><img src="{{object.image.url}}"></img></p>
+                <p><img src="{{object.image.url}}" alt="今日の猫" width="60%" height="60%"></img></p>
+
+                <!-- 朝ごはん -->
+                <p>朝ごはん：{{object.food_category_bf}} を {{object.food_amount_bf}}{{object.food_unit_bf}} 食べた。</p>
+                <!-- 昼ごはん -->
+                <p>昼ごはん：{{object.food_category_l}} を {{object.food_amount_l}}{{object.food_unit_l}} 食べた。</p>
+                <!-- 夜ごはん -->
+                <p>夜ごはん：{{object.food_category_d}} を {{object.food_amount_d}}{{object.food_unit_d}} 食べた。</p>
+
+                <!-- おやつ -->
+                <p>おやつ：<br>
+                        {{object.snack_category_1}} を {{object.snack_amount_1}}{{object.snack_unit_1}} と<br>
+                        {{object.snack_category_2}} を {{object.snack_amount_2}}{{object.snack_unit_2}} と<br>
+                        {{object.snack_category_3}} を {{object.snack_amount_3}}{{object.snack_unit_3}} 食べた。</p>
+
+                <!-- 尿の量 -->
+                <p>尿の量：{{object.urine_amount}}</p>
+
+                <!-- 便の量 -->
+                <p>便の量：{{object.stool_amount}}</p>
+                <!-- 便の状態 -->
+                <p>便の状態：{{object.stool_condition}}</p>
+
+                <!-- 活発度数 -->
+                <p>活発度数：{{object.physical_condition}}</p>
+
+                <!-- 傷の状態 -->
+                <p>傷の状態：{{object.damage}}</p>
+
+                <!-- 通院 -->
+                <p>通院：{{object.clinic}}</p>
+
+                <!-- 爪切り -->
+                <p>爪切り：{{object.cut_nail}}</p>
+
+                <!-- 体重 -->
+                <p>体重：{{object.weight}}</p>
+
+                <!-- コメント -->
+                <p>今日のひとこと：{{object.comment}}</p>
+
+                <br>
             </div>
         </div>
     </div>

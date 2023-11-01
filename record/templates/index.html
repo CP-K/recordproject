@@ -5,12 +5,13 @@
 
     {% block contents %}
 
-    <!-- タイトルテンプレートの組み込み -->
-    {% include "records_title.html" %}
+        <!-- タイトルテンプレートの組み込み -->
+        {% include "records_title.html" %}
 
-    <!-- 投稿一覧テンプレートの組み込み -->
-    {% include "records_list.html" %}
-    <!-- ページネーションの組み込み -->
-    {% include "pagination.html" %}
+        <!-- 投稿一覧テンプレートの組み込み -->
+        {% include "records_list.html" %}
+
+        <!-- ページネーションの組み込み -->
+        {% include "pagination.html" %}
 
     {% endblock %}
