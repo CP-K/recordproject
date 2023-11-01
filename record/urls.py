@@ -37,4 +37,11 @@ urlpatterns = [
         views.DetailView.as_view(),
         name='record_detail'
         ),
+
+    #マイページ
+    #mypage/へのアクセスはMypageViewを実行
+    path('mypage/',
+        views.MypageView.as_view(),
+        name='mypage'
+        ),
 ]
