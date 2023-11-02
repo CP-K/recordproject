@@ -1,6 +1,7 @@
 from django.db import models
 #accountアプリのmodelモジュールからCustomUserをインポート
 from accounts.models import CustomUser
+from decimal import Decimal
 
 class CatName(models.Model):
     '''記録する猫の名前を管理するモデル
@@ -68,34 +69,34 @@ class ConditionRecord(models.Model):
         on_delete=models.PROTECT
         )
     #量の単位
-    UNIT=(('gram','g'),
-        ('pack', '袋'),
-        ('stick','本'),
-        ('piece','個'))
+    UNIT=(('g','g'),
+        ('袋', '袋'),
+        ('本','本'),
+        ('個','個'))
     #尿と便の量
-    AMOUNT=(('more','すごく多い'),
-        ('much','多い'),
-        ('usual','いつも通り'),
-        ('little','少ない'),
-        ('less','すごく少ない'))
+    AMOUNT=(('すごく多い','すごく多い'),
+        ('多い','多い'),
+        ('いつも通り','いつも通り'),
+        ('少ない','少ない'),
+        ('すごく少ない','すごく少ない'))
     #便の状態
-    SCONDITION=(('harder','カチコチ'),
-        ('hard','カタ'),
-        ('usual','いつも通り'),
-        ('soft','ヤワ'),
-        ('softer','シャバシャバ'))
+    SCONDITION=(('カチコチ','カチコチ'),
+        ('カタ','カタ'),
+        ('いつも通り','いつも通り'),
+        ('ヤワ','ヤワ'),
+        ('シャバシャバ','シャバシャバ'))
     #元気度数と傷の状態
-    CONDITION=(('best','すごく良い'),
-        ('good','良い'),
-        ('usual','変わらず'),
-        ('bad','悪い'),
-        ('worst','すごく悪い'))
+    CONDITION=(('すごく良い','すごく良い'),
+        ('良い','良い'),
+        ('変わらず','変わらず'),
+        ('悪い','悪い'),
+        ('すごく悪い','すごく悪い'))
     #通院日
-    CLINIC=(('go','通院日'),
-            ('didnotgo','通院なし'))
+    CLINIC=(('通院日','通院日'),
+            ('通院なし','通院なし'))
     #爪切り
-    NAIL=(('cut','爪を切った'),
-        ('donot','爪切ってない'))
+    NAIL=(('爪を切った','爪を切った'),
+        ('爪切ってない','爪切ってない'))
     #記録日用のフィールド
     date=models.IntegerField(
         verbose_name='記録日'                   #フィールドのタイトル
@@ -115,8 +116,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #ごはんの量用のフィールド
-    food_amount_bf=models.IntegerField(
+    food_amount_bf=models.DecimalField(
         verbose_name='朝ごはんの量',              #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -140,8 +144,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #ごはんの量用のフィールド
-    food_amount_l=models.IntegerField(
+    food_amount_l=models.DecimalField(
         verbose_name='昼ごはんの量',              #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -165,8 +172,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #ごはんの量用のフィールド
-    food_amount_d=models.IntegerField(
+    food_amount_d=models.DecimalField(
         verbose_name='夕ごはんの量',              #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -193,8 +203,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #おやつの量用のフィールド
-    snack_amount_1=models.IntegerField(
+    snack_amount_1=models.DecimalField(
         verbose_name='おやつ1の量',              #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -218,8 +231,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #おやつの量用のフィールド
-    snack_amount_2=models.IntegerField(
+    snack_amount_2=models.DecimalField(
         verbose_name='おやつ2の量',      #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -243,8 +259,11 @@ class ConditionRecord(models.Model):
         null=True
         )
     #おやつの量用のフィールド
-    snack_amount_3=models.IntegerField(
+    snack_amount_3=models.DecimalField(
         verbose_name='おやつ3の量',      #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
+        blank=True,
         null=True
         )
     #量の単位のフィールド
@@ -298,8 +317,10 @@ class ConditionRecord(models.Model):
         choices=NAIL                   #cut_nailフィールドにはNAILの要素のみを登録
         )
     #体重のフィールド
-    weight=models.IntegerField(
-        verbose_name='体重',
+    weight=models.DecimalField(
+        verbose_name='体重',            #フィールドのタイトル
+        max_digits=5,
+        decimal_places=2,
         blank=True,
         null=True
         )
@@ -313,9 +334,7 @@ class ConditionRecord(models.Model):
     #イメージのフィールド
     image=models.ImageField(
         verbose_name='イメージ',
-        upload_to='photos',
-        blank=True,
-        null=True
+        upload_to='photos'
         )
     #投稿日時のフィールド
     posted_at=models.DateTimeField(
